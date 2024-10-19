@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Tree Structure</title>
+    <title>Responsive HTML Tree Structure</title>
     <style>
-        html {
-            background-color: #000;
-        }
         /* Cấu trúc cây */
         .tree ul {
-            padding-top: 20px; position: relative;
+            padding-top: 20px; 
+            position: relative;
             transition: all 0.5s;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .tree li {
-            float: left; text-align: center;
+            text-align: center;
             list-style-type: none;
             position: relative;
             padding: 20px 5px 0 5px;
             transition: all 0.5s;
+            flex-basis: 100%;
         }
 
         /* Đường thẳng giữa các nút */
-        .tree li::before, .tree li::after{
+        .tree li::before, .tree li::after {
             content: '';
             position: absolute; top: 0; right: 50%;
             border-top: 1px solid #ccc;
             width: 50%; height: 20px;
         }
 
-        .tree li::after{
+        .tree li::after {
             right: auto; left: 50%;
             border-left: 1px solid #ccc;
         }
@@ -46,28 +48,28 @@
         }
 
         /* Đường thẳng nối các phần tử con */
-        .tree li:first-child::before, .tree li:last-child::after{
+        .tree li:first-child::before, .tree li:last-child::after {
             border: 0 none;
         }
 
-        .tree li:last-child::before{
+        .tree li:last-child::before {
             border-right: 1px solid #ccc;
             border-radius: 0 5px 0 0;
         }
 
-        .tree li:first-child::after{
+        .tree li:first-child::after {
             border-radius: 5px 0 0 0;
         }
 
         /* Phong cách cho phần tử */
-        .tree ul ul::before{
+        .tree ul ul::before {
             content: '';
             position: absolute; top: 0; left: 50%;
             border-left: 1px solid #ccc;
             width: 0; height: 20px;
         }
 
-        .tree li a{
+        .tree li a {
             border: 1px solid #ccc;
             padding: 5px 10px;
             text-decoration: none;
@@ -81,15 +83,33 @@
 
         /* Phong cách khi di chuột */
         .tree li a:hover, .tree li a:hover+ul li a {
-            background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+            background: #c8e4f8; 
+            color: #000; 
+            border: 1px solid #94a0b4;
         }
 
         /* Đổi màu khi được chọn */
         .tree li a:hover+ul li::after, 
         .tree li a:hover+ul li::before, 
         .tree li a:hover+ul::before, 
-        .tree li a:hover+ul ul::before{
+        .tree li a:hover+ul ul::before {
             border-color:  #94a0b4;
+        }
+
+        /* Media queries cho thiết bị nhỏ hơn (di động) */
+        @media (max-width: 768px) {
+            .tree ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tree li {
+                flex-basis: auto;
+                padding: 15px 0;
+            }
+
+            .tree li::before, .tree li::after {
+                width: 0;
+            }
         }
     </style>
 </head>
@@ -104,6 +124,7 @@
                         <ul>
                             <li><a href="#">meta</a></li>
                             <li><a href="#">title</a></li>
+                            <li><a href="#">link</a></li>
                         </ul>
                     </li>
                     <li>
